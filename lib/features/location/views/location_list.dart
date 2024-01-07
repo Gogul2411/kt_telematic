@@ -2,11 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kt_telematic/features/authentication/model/users.dart';
 import 'package:kt_telematic/database/sqlite/database_helper.dart';
-import 'package:kt_telematic/features/authentication/views/login.dart';
 import 'package:kt_telematic/features/location/view_model/location_viewmodel.dart';
 import 'package:kt_telematic/features/location/views/google_map_view.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationList extends StatefulWidget {
   final Users? profile;
@@ -63,31 +61,6 @@ class _LocationListState extends State<LocationList> {
         title: const Text('User Locations'),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              onPressed: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.remove("isLoggedIn");
-                locationVM.userLocations = null;
-                // ignore: use_build_context_synchronously
-                Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return const LoginScreen();
-                    },
-                  ),
-                  (_) => false,
-                );
-              },
-              icon: const Icon(
-                Icons.logout_sharp,
-                size: 25,
-              ),
-            ),
-          ),
-        ],
       ),
       body: Center(
         child: Consumer<LocationViewModel>(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kt_telematic/database/sqlite/database_helper.dart';
+import 'package:kt_telematic/features/authentication/views/login.dart';
 import 'package:kt_telematic/features/authentication/views/splash_screen.dart';
 import 'package:kt_telematic/features/location/view_model/location_viewmodel.dart';
 import 'package:geolocator/geolocator.dart';
@@ -59,7 +60,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Splash(),
+      home: const LoginScreen(),
     );
   }
 }
